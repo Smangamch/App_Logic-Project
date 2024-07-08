@@ -5,9 +5,9 @@ import datetime
 async def test_create_item():
     app = await TodoApp.new()
     todo_action = await app.create("Purchase car wheels")
-    assert todo.id == 1
-    assert todo.description == "Purchase car wheels"
-    assert todo.completed_on is None
+    assert Todo_Items.id == 1
+    assert Todo_Items.description == "Purchase car wheels"
+    assert Todo_Items.completed_on is None
     
 async def test_update_item():
     app = await TodoApp.new()
@@ -27,6 +27,7 @@ async def test_delete_item():
 async def test_completed_on():
     app = await TodoApp.new()
     todo = await app.create("Purchase car engine")
+    
     
 async def test_filter_text():
     app = await TodoApp.new()

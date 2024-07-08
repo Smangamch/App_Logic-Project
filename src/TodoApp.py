@@ -29,36 +29,37 @@ class TodoApp:
     # 2. Method to update and make changes to the items
     async def update(self, todo_id: int, description: str): # The update method checks the todo dictionary to see if the todo_id to check if it exists within 
         for todo_item in self.todo:                         # the data structure and then is going to modify the description of the retrieved TodoItem
-            if todo.id == todo_id:
-                todo.description = description
-                return todo
+            if todo_item.id == todo_id:
+                todo_item = self.todo[todo_id]
+                todo_item.description = description
+                return todo_item
             else:
-                raise ValueError('id not found!')
+                raise ValueError('item not found!')
     
     # 3. Method to delete a todo item
-    async def delete(self, todo_id: int, value: str):       # This delete method checks to see if todo dictionary has an item and the deletes if found
-        value = "Empty item"
+    async def delete(self, todo_id: int) -> None:       # This delete method checks to see if todo dictionary has an item and the deletes if found
+        
         if todo_id not in self.todo:
-            return value
+            return f"Todo item with ID {todo_id} not found!"
         del self.todo[todo_id]
         
     # 4. Method to set the todo  item as being complete
-    async def complete(self, todo_id: int):
+    async def complete(self, todo_id: int) -> bool:
         for todo_item in self.todo:
             if todo_item.id == todo_id:
-                todo_item.completed_on = Todo_Items.completed_on 
-                return todo_item
+                self.todo[todo_id].complete()
+                return True
             else:
                 return ValueError('Not complete!')
             
-    # 5. Method to filter the itema
+    # 5. Method to filter the items
     async def filter(self, part_text: str) -> Todo_Items:
         filter_list = []
         for todo in self.todo:
             if part_text is not filter_list:
                 filter_list = Todo_Items.completed_on
             if filter_list.completed_on == Todo_Items.completed_on:
-                filter_list.append(Todo_Items.completed_on)
+                filter_list.append(Todo_Items.description)
             if part_text.lower() in Todo_Items.description.lower():
                 filter_list.append(todo) 
         else:
